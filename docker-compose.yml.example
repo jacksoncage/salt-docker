@@ -1,0 +1,27 @@
+master:
+  image: jacksoncage/salt
+  environment:
+    SALT_USE: master
+    SALT_NAME: master
+    LOG_LEVEL: debug
+  expose:
+    - "4505"
+    - "4506"
+    - "8080"
+    - "8081"
+  volumes:
+    - ~/srv:/srv
+minion1:
+  image: jacksoncage/salt
+  links:
+   - master
+  environment:
+    SALT_USE: minion
+    SALT_NAME: minion1
+minion2:
+  image: jacksoncage/salt
+  links:
+   - master
+  environment:
+    SALT_USE: minion
+    SALT_NAME: minion2
