@@ -1,7 +1,7 @@
-Easy Saltstack testing with Docker
+Easy Salt testing with Docker
 ===========
 
-This repo provides a Saltstack setup with one master and one (or multiple) minions to be able to test and work with states, pillars and all other salt functionality. By using docker it's easy to reproduce and test you code.
+This repo provides a Salt setup with one master and one (or multiple) minions to be able to test and work with states, pillars and all other salt functionality. By using docker it's easy to reproduce and test you code.
 
 Image includes both salt-master, salt-minion, salt-api and also salt-cloud to be able to test and troubleshoot all things salt. `SALT_USE` environment variable is used to determent if container should be running as master or minion.
 
