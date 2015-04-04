@@ -25,7 +25,7 @@ ADD etc/minion /etc/salt/minion
 ADD etc/reactor /etc/salt/master.d/reactor
 
 # Expose volumes
-VOLUME ['/etc/salt', '/var/cache/salt', '/var/logs/salt', '/srv/salt']
+VOLUME ["/etc/salt", "/var/cache/salt", "/var/logs/salt", "/srv/salt"]
 
 # Exposing salt master and api ports
 EXPOSE 4505 4506 8080 8081

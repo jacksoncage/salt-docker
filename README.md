@@ -7,24 +7,24 @@ Image includes both salt-master, salt-minion, salt-api and also salt-cloud to be
 
 Salt master is auto accepting all minions.
 
+## Salt versions
+
+### Supported tags and respective `Dockerfile` links
+
+ - **latest** [(2014.7.2+ds-1trusty2/Dockerfile)](https://github.com/jacksoncage/salt-docker/blob/master/Dockerfile)
+ - **2014.7.2** [(2014.7.2+ds-1trusty2/Dockerfile)](https://github.com/jacksoncage/salt-docker/blob/version/2014.7.2/Dockerfile)
+
 # Get it running
 
 ## Salt master/minon with docker run
 
 ```
-$ sudo docker run -i -t -n saltdocker_master_1 -h master -p 4505 -p 4506 -p 8080 -p 8081 -e SALT_NAME=master -v `pwd`/srv:/srv:rw jacksoncage/salt
+$ docker run -i -t --name=saltdocker_master_1 -h master -p 4505 -p 4506 -p 8080 -p 8081 -e SALT_NAME=master -e SALT_USE=master -v `pwd`/srv/salt:/srv/salt:rw jacksoncage/salt
 ```
 
-By jumping in with `docker exec -i -t saltdocker_master_1 bash` your able to start salt minion as well, and to test/troubleshoot
-
-```
-$ service salt-minion start
-```
-
-Now your ready to write you states and test them out.
+By jumping in with `docker exec -i -t saltdocker_master_1 bash` your able to test/troubleshoot. Now your ready to write you states and test them out.
 
 ## Salt cluster with docker compose
-*This steps are done for OSX only*
 
 Using docker [machine](https://github.com/docker/machine) and [composer](https://github.com/docker/compose) to get a multi-minion setup. Copy and configure `docker-compose.yml.example` to `docker-compose.yml` and run the following
 
@@ -40,6 +40,7 @@ Env variables are used to set config on startup, you can set the following envs
 
  - `SALT_USE`  - master/minion, defaults to master
  - `SALT_NAME` - minion name, defaults to to master
+ - `SALT_GRAINS` - set minion grains as json, defaults to none
  - `LOG_LEVEL` - log level, defaults to info
  - `OPTIONS`   - other options passed into salt process, defaults to none
 
