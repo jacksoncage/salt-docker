@@ -1,7 +1,22 @@
 interface: 0.0.0.0
 file_roots:
   base:
-    - /srv/salt
+    - /srv/salt/state
 pillar_roots:
   base:
-    - /srv/pillar
+    - /srv/salt/pillar
+auto_accept: True
+halite:
+  tls: False
+  level: debug
+  server: cherrypy
+  host: 0.0.0.0
+  cors: True
+  port: 8080
+rest_cherrypy:
+  webhook_disable_auth: True
+  disable_ssl: True
+  host: 0.0.0.0
+  debug: True
+  webhook_url: /hook
+  port: 8081

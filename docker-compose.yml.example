@@ -1,0 +1,36 @@
+master:
+  image: jacksoncage/salt:latest
+  environment:
+    SALT_USE: master
+    SALT_NAME: master
+    SALT_GRAINS: "{'test': 'test'}"
+    LOG_LEVEL: debug
+  hostname: master
+  expose:
+    - "4505"
+    - "4506"
+    - "8080"
+    - "8081"
+  ports:
+    - "8080:8080"
+    - "8081:8081"
+  volumes:
+    - ./srv/salt:/srv/salt/:rw
+minion1:
+  image: jacksoncage/salt:latest
+  links:
+   - master
+  environment:
+    SALT_USE: minion
+    SALT_NAME: minion1
+    SALT_GRAINS: "{'test': 'test'}"
+  hostname: minion1
+minion2:
+  image: jacksoncage/salt:latest
+  links:
+   - master
+  environment:
+    SALT_USE: minion
+    SALT_NAME: minion2
+    SALT_GRAINS: "{'test': 'test'}"
+  hostname: minion2
