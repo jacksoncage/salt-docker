@@ -6,12 +6,12 @@ ENV REFRESHED_AT 2015-04-03
 RUN apt-get update && \
 	apt-get install -y wget curl dnsutils python-pip python-dev python-apt software-properties-common dmidecode
 
-# Setup salt ppa
-RUN echo deb http://ppa.launchpad.net/saltstack/salt/ubuntu `lsb_release -sc` main | tee /etc/apt/sources.list.d/saltstack.list && \
-	wget -q -O- "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x4759FA960E27C0A6" | apt-key add -
+# Add official salt repo
+RUN echo deb http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.7/ `lsb_release -sc` main | tee /etc/apt/sources.list.d/saltstack.list && \
+    wget -q -O - "http://repo.saltstack.com/apt/ubuntu/14.04/amd64/2015.8/SALTSTACK-GPG-KEY.pub" | sudo apt-key add -
 
 # Install salt master/minion/cloud/api
-ENV SALT_VERSION 2014.7.2+ds-1trusty2
+ENV SALT_VERSION 2015.8.7+ds-1
 RUN apt-get update && \
 	apt-get install -y salt-master=$SALT_VERSION salt-minion=$SALT_VERSION \
 	salt-cloud=$SALT_VERSION salt-api=$SALT_VERSION
