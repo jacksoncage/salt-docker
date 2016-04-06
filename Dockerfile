@@ -7,8 +7,8 @@ RUN apt-get update && \
 	apt-get install -y wget curl dnsutils python-pip python-dev python-apt software-properties-common dmidecode
 
 # Add official salt repo
-RUN echo deb http://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest `lsb_release -sc` main | tee /etc/apt/sources.list.d/saltstack.list && \
-    wget -q -O - "https://repo.saltstack.com/apt/ubuntu/14.04/amd64/latest/SALTSTACK-GPG-KEY.pub" | sudo apt-key add -
+RUN echo deb http://repo.saltstack.com/apt/ubuntu/14.04/amd64/archive/2015.8.7/ `lsb_release -sc` main | tee /etc/apt/sources.list.d/saltstack.list && \
+    wget -q -O - "http://repo.saltstack.com/apt/ubuntu/14.04/amd64/2015.8/SALTSTACK-GPG-KEY.pub" | sudo apt-key add -
 
 # Install salt master/minion/cloud/api
 ENV SALT_VERSION 2015.8.7+ds-1
