@@ -4,7 +4,7 @@ ENV REFRESHED_AT 2015-04-03
 
 # Update system
 RUN apt-get update && \
-	apt-get install -y wget curl dnsutils python-pip python-dev python-apt software-properties-common dmidecode
+	apt-get install -y wget curl dnsutils python-pip python-dev python-apt software-properties-common dmidecode virt-what
 
 # Setup salt ppa
 RUN echo deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest xenial main | tee /etc/apt/sources.list.d/saltstack.list && \
