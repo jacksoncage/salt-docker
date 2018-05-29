@@ -8,10 +8,10 @@ RUN apt-get update && \
 
 # Setup salt ppa
 RUN echo deb http://ppa.launchpad.net/saltstack/salt/ubuntu `lsb_release -sc` main | tee /etc/apt/sources.list.d/saltstack.list && \
-	wget -q -O- "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x4759FA960E27C0A6" | apt-key add -
+	wget -q -O- "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4759FA960E27C0A6" | apt-key add -
 
 # Install salt master/minion/cloud/api
-ENV SALT_VERSION 2014.7.2+ds-1trusty2
+ENV SALT_VERSION 2015.5.3+ds-1trusty1
 RUN apt-get update && \
 	apt-get install -y salt-master=$SALT_VERSION salt-minion=$SALT_VERSION \
 	salt-cloud=$SALT_VERSION salt-api=$SALT_VERSION
