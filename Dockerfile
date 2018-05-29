@@ -1,4 +1,4 @@
-FROM        ubuntu:14.04
+FROM        ubuntu:16.04
 MAINTAINER  Love Nyberg "love.nyberg@lovemusic.se"
 ENV REFRESHED_AT 2015-04-03
 
@@ -7,11 +7,11 @@ RUN apt-get update && \
 	apt-get install -y wget curl dnsutils python-pip python-dev python-apt software-properties-common dmidecode
 
 # Setup salt ppa
-RUN echo deb http://ppa.launchpad.net/saltstack/salt/ubuntu `lsb_release -sc` main | tee /etc/apt/sources.list.d/saltstack.list && \
-	wget -q -O- "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4759FA960E27C0A6" | apt-key add -
+RUN echo deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest xenial main | tee /etc/apt/sources.list.d/saltstack.list && \
+	wget -q -O- "https://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest/SALTSTACK-GPG-KEY.pub" | apt-key add -
 
 # Install salt master/minion/cloud/api
-ENV SALT_VERSION 2015.5.3+ds-1trusty1
+ENV SALT_VERSION 2018.3.0+ds-1
 RUN apt-get update && \
 	apt-get install -y salt-master=$SALT_VERSION salt-minion=$SALT_VERSION \
 	salt-cloud=$SALT_VERSION salt-api=$SALT_VERSION
