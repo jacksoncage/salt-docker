@@ -1,6 +1,6 @@
 FROM        ubuntu:16.04
 MAINTAINER  Love Nyberg "love.nyberg@lovemusic.se"
-ENV REFRESHED_AT 2015-04-03
+ENV REFRESHED_AT 2018-05-29
 
 # Update system
 RUN apt-get update && \
